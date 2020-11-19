@@ -11,8 +11,8 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const windRouter = require('./routes/wind.router');
-const weatherRouter = require('./routes/wind.router');
-const lakeRouter = require('./routes/wind.router');
+const weatherRouter = require('./routes/weather.router');
+const lakeRouter = require('./routes/lake.router');
 
 
 // Body parser middleware
