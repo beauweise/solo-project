@@ -10,6 +10,10 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+const windRouter = require('./routes/wind.router');
+const weatherRouter = require('./routes/wind.router');
+const lakeRouter = require('./routes/wind.router');
+
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -24,6 +28,12 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/wind',windRouter);
+app.use('/api/weather',weatherRouter);
+app.use('/api/lake',lakeRouter);
+
+
+
 
 // Serve static files
 app.use(express.static('build'));

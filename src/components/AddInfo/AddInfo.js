@@ -4,6 +4,15 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Date from '../Date/Date';
 class AddInfo extends Component {
+    componentDidMount() {
+        this.getFormInfo()
+    }
+    //getting data for page load from GET_MOVIES
+    getFormInfo = () => {
+        this.props.dispatch({ type: 'GET_FORM_INFO' })
+
+    }
+
 
     render() {
         return (
@@ -13,8 +22,10 @@ class AddInfo extends Component {
                         <Date />
                     </li>
                     <li>
-                        <label>Lake</label>
-                        <input placeholder="lake"></input>
+                    <label>Lake:</label>
+                        <select>
+                            <option></option>
+                        </select>
                     </li>
                     <br />
                     <li>
@@ -25,13 +36,23 @@ class AddInfo extends Component {
                     </li>
                     <br />
                     <li>
-                        <label>Water Temp in degrees F</label>
-                        <input placeholder='Water Temp'></input>
+                        <label>Wind:</label>
+                        <select>
+                            <option></option>
+                        </select>
+                        mph
                     </li>
                     <br />
                     <li>
-                        <label>Water Clarity in Feet</label>
+                        <label>Water Temp</label>
+                        <input placeholder='Water Temp'></input>
+                        °F
+                    </li>
+                    <br />
+                    <li>
+                        <label>Water Clarity</label>
                         <input placeholder='Water Clarity'></input>
+                        ft.
                     </li>
                     <br /><li>
                         <label>Amount of fish caught:</label>
@@ -53,9 +74,8 @@ class AddInfo extends Component {
                         <input placeholder='Notes'></input>
                     </li>
 
-
-
                 </ul>
+                <button onClick = {this.submitInfo}>Submit</button>
             </div>
         )
     }
