@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Date from '../Date/Date';
+
+
 class AddInfo extends Component {
     state = {
         addUserInfo: {
@@ -23,10 +25,19 @@ class AddInfo extends Component {
     }
     //getting data for page load from GET_MOVIES
     getFormInfo = () => {
-        this.props.dispatch({ type: 'FETCH_WIND' })
-
+        this.props.dispatch({ type: 'FETCH_WIND' });
+        this.props.dispatch({ type: 'FETCH_WEATHER' });
+        this.props.dispatch({ type: 'FETCH_LAKE' });
     }
-    handleChange
+    handleChange = (propertyName, event) => {
+       
+        this.setState({
+            addUserInfo: {
+                ...this.state.addUserInfo,
+                [propertyName]: event.target.value
+            }
+        })
+    }
 
     render() {
         return (
@@ -51,7 +62,7 @@ class AddInfo extends Component {
                     <br />
                     <li>
                         <label>Wind:</label>
-                        <select onChange={(event) => this.handleChange(event)} >
+                        <select onChange={(event) => this.handleChange("wind",event)} >
                             <option hidden value=''>Wind</option>
                             {this.props.store.getWindReducer.map((wind) => {
                                 return <option key={wind.id} value={wind.id}>{wind.name}</option>
