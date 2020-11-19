@@ -13,6 +13,7 @@ const userRouter = require('./routes/user.router');
 const windRouter = require('./routes/wind.router');
 const weatherRouter = require('./routes/weather.router');
 const lakeRouter = require('./routes/lake.router');
+const userDataRouter = require('./routes/userData.router');
 
 
 // Body parser middleware
@@ -31,6 +32,7 @@ app.use('/api/user', userRouter);
 app.use('/api/wind',windRouter);
 app.use('/api/weather',weatherRouter);
 app.use('/api/lake',lakeRouter);
+app.use('/api/userData',userDataRouter);
 
 
 

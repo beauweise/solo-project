@@ -4,15 +4,29 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Date from '../Date/Date';
 class AddInfo extends Component {
+    state = {
+        addUserInfo: {
+            date: '',
+            lake: '',
+            weather: '',
+            wind: '',
+            waterTemp: '',
+            waterClarity: '',
+            fishCaught: '',
+            fishSaw: '',
+            lures:'',
+            notes:''
+        }
+    }
     componentDidMount() {
         this.getFormInfo()
     }
     //getting data for page load from GET_MOVIES
     getFormInfo = () => {
-        this.props.dispatch({ type: 'GET_FORM_INFO' })
+        this.props.dispatch({ type: 'FETCH_WIND' })
 
     }
-
+    handleChange
 
     render() {
         return (
@@ -22,7 +36,7 @@ class AddInfo extends Component {
                         <Date />
                     </li>
                     <li>
-                    <label>Lake:</label>
+                        <label>Lake:</label>
                         <select>
                             <option></option>
                         </select>
@@ -37,8 +51,11 @@ class AddInfo extends Component {
                     <br />
                     <li>
                         <label>Wind:</label>
-                        <select>
-                            <option></option>
+                        <select onChange={(event) => this.handleChange(event)} >
+                            <option hidden value=''>Wind</option>
+                            {this.props.store.getWindReducer.map((wind) => {
+                                return <option key={wind.id} value={wind.id}>{wind.name}</option>
+                            })}
                         </select>
                         mph
                     </li>
@@ -75,7 +92,7 @@ class AddInfo extends Component {
                     </li>
 
                 </ul>
-                <button onClick = {this.submitInfo}>Submit</button>
+                <button onClick={this.submitInfo}>Submit</button>
             </div>
         )
     }
