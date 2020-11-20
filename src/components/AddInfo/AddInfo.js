@@ -22,6 +22,8 @@ class AddInfo extends Component {
     }
     componentDidMount() {
         this.getFormInfo()
+        console.log(this.props.store.getWeather);
+        
     }
     //getting data for page load from GET_MOVIES
     getFormInfo = () => {
@@ -48,24 +50,31 @@ class AddInfo extends Component {
                     </li>
                     <li>
                         <label>Lake:</label>
-                        <select>
-                            <option></option>
+                    <select onChange={(event) => this.handleChange("lake",event)} >
+                            <option hidden value=''>Weather</option>
+                            {this.props.store.getDropDownInfo.getLake.map((lake) => {
+                                return <option key={lake.id} value={lake.id}>{lake.lake}</option>
+                            })}
                         </select>
                     </li>
                     <br />
                     <li>
-                        <label>Weather:</label>
-                        <select>
-                            <option></option>
+                    <label>Weather:</label>
+                    <select onChange={(event) => this.handleChange("weather",event)} >
+                            <option hidden value=''>Weather</option>
+                            {this.props.store.getDropDownInfo.getWeather.map((weather) => {
+                                return <option key={weather.id} value={weather.id}>{weather.weather}</option>
+                            })}
                         </select>
                     </li>
                     <br />
+
                     <li>
                         <label>Wind:</label>
                         <select onChange={(event) => this.handleChange("wind",event)} >
                             <option hidden value=''>Wind</option>
-                            {this.props.store.getWindReducer.map((wind) => {
-                                return <option key={wind.id} value={wind.id}>{wind.name}</option>
+                            {this.props.store.getDropDownInfo.getWind.map((wind) => {
+                                return <option key={wind.id} value={wind.id}>{wind.wind}</option>
                             })}
                         </select>
                         mph

@@ -6,7 +6,15 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-  // GET route code here
+  const queryText = `SELECT * FROM "lake"`;
+
+  pool.query(queryText).then((result) => {
+    console.log(result.rows);
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log(`Error on query ${error}`);
+    res.sendStatus(500);
+  });
 });
 
 
