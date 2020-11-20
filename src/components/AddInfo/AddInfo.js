@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import Date from '../Date/Date';
+// import Date from '../Date/Date';
 
 
 class AddInfo extends Component {
     state = {
-        addUserInfo: {
+        addUserData: {
             date: '',
             lake: '',
             weather: '',
             wind: '',
-            waterTemp: '',
-            waterClarity: '',
-            fishCaught: '',
-            fishSaw: '',
+            waterTemp: 0,
+            waterClarity: 0,
+            fishCaught: 0,
+            fishSaw: 0,
             lures:'',
             notes:''
         }
@@ -32,13 +32,28 @@ class AddInfo extends Component {
         this.props.dispatch({ type: 'FETCH_LAKE' });
     }
     handleChange = (propertyName, event) => {
-       
+       if(propertyName === "waterTemp" || propertyName === "waterClarity" 
+        || propertyName === "fishCaught" || propertyName === "fishSaw"){
         this.setState({
-            addUserInfo: {
-                ...this.state.addUserInfo,
-                [propertyName]: event.target.value
+            addUserData: {
+                ...this.state.addUserData,
+                [propertyName]: Number(event.target.value)
+                
             }
         })
+    }else{this.setState({
+        addUserData: {
+            ...this.state.addUserData,
+            [propertyName]: event.target.value
+        }
+    })}
+    console.log(this.state);
+    
+    }
+    submitInfo = () => {
+
+        this.props.dispatch({ type: 'ADD_DATA', payload: this.state.addUserData })
+        
     }
 
     render() {
@@ -46,12 +61,14 @@ class AddInfo extends Component {
             <div>
                 <ul>
                     <li>
-                        <Date />
+                        {/* <Date /> */}
+                        <input type="date" onChange={(event) => this.handleChange("date",event)}></input>
                     </li>
+                    {this.props.store.userReducer}
                     <li>
                         <label>Lake:</label>
                     <select onChange={(event) => this.handleChange("lake",event)} >
-                            <option hidden value=''>Weather</option>
+                            <option hidden value=''>Lake</option>
                             {this.props.store.getDropDownInfo.getLake.map((lake) => {
                                 return <option key={lake.id} value={lake.id}>{lake.lake}</option>
                             })}
@@ -82,33 +99,39 @@ class AddInfo extends Component {
                     <br />
                     <li>
                         <label>Water Temp</label>
-                        <input placeholder='Water Temp'></input>
+                        <input type='number' placeholder='Water Temp' onChange={(event) => 
+                            this.handleChange("waterTemp",event)}></input>
                         °F
                     </li>
                     <br />
                     <li>
                         <label>Water Clarity</label>
-                        <input placeholder='Water Clarity'></input>
+                        <input type='number' placeholder='Water Clarity' onChange={(event) => 
+                            this.handleChange("waterClarity",event)}></input>
                         ft.
                     </li>
                     <br /><li>
                         <label>Amount of fish caught:</label>
-                        <input placeholder='Fish caught'></input>
+                        <input type='number' placeholder='Fish caught' onChange={(event) => 
+                            this.handleChange("fishCaught",event)}></input>
                     </li>
                     <br />
                     <li>
                         <label>How many fish were seen:</label>
-                        <input placeholder='Fish saw'></input>
+                        <input type='number' placeholder='Fish saw' onChange={(event) => 
+                            this.handleChange("fishSaw",event)}></input>
                     </li>
                     <br />
                     <li>
                         <label>Best lures:</label>
-                        <input placeholder='Best Lures of the day'></input>
+                        <input placeholder='Best Lures of the day' onChange={(event) => 
+                            this.handleChange("lures",event)}></input>
                     </li>
                     <br />
                     <li>
                         <label>Notes:</label>
-                        <input placeholder='Notes'></input>
+                        <input placeholder='Notes' onChange={(event) => 
+                            this.handleChange("notes",event)}></input>
                     </li>
 
                 </ul>

@@ -13,9 +13,9 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AddInfo from '../AddInfo/AddInfo';
-// import AboutPage from '../AboutPage/AboutPage';
+import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+// import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -41,7 +41,7 @@ class App extends Component {
               // shows AboutPage at all times (logged in or not)
               exact
               path="/about"
-              component={AddInfo}
+              component={AboutPage}
             />
 
             {/* For protected routes, the view could show one of several things on the same route.
@@ -59,7 +59,7 @@ class App extends Component {
               // logged in shows InfoPage else shows LoginPage
               exact
               path="/info"
-              component={InfoPage}
+              component={AddInfo}
             />
 
             {/* When a value is supplied for the authRedirect prop the user will
