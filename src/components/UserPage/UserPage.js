@@ -30,7 +30,14 @@ getHistory = () => {
   render() {
     return (
       <div>
-        <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
+        <h1 id="welcome">Welcome, {this.props.store.user.username}! Lets view your trip History!</h1>
+        <p>Please select a trip for more details</p>
+
+       
+       {this.props.store.getHistory.map((history) => {
+                    return <li className='history' key = {history.id}>Date:{history.date}Lake:{history.lake}Wind:{history.wind}</li>
+       })}
+                        
 
         <LogOutButton className="log-in" />
       </div>
@@ -40,3 +47,6 @@ getHistory = () => {
 
 // this allows us to use <App /> in index.js
 export default connect(mapStoreToProps)(UserPage);
+// onClick={() => this.getDetails()} */}
+// key={movie.id} alt="" src={movie.poster} /> */
+// })}
