@@ -13,7 +13,7 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AddInfo from '../AddInfo/AddInfo';
-import AboutPage from '../AboutPage/AboutPage';
+import DetailsPage from '../DetailsPage/DetailsPage';
 import UserPage from '../UserPage/UserPage';
 // import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
@@ -37,11 +37,11 @@ class App extends Component {
             <Redirect exact from="/" to="/home" />
 
             {/* Visiting localhost:3000/about will show the about page. */}
-            <Route
+            <ProtectedRoute
               // shows AboutPage at all times (logged in or not)
               exact
-              path="/about"
-              component={AboutPage}
+              path="/Details"
+              component={DetailsPage}
             />
 
             {/* For protected routes, the view could show one of several things on the same route.
@@ -61,6 +61,7 @@ class App extends Component {
               path="/info"
               component={AddInfo}
             />
+            
 
             {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will

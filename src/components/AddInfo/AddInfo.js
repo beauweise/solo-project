@@ -61,6 +61,7 @@ class AddInfo extends Component {
             <div>
                 <form  id="resetForm">
                     <ul>
+                        {JSON.stringify(this.props.store.details)}
                         <li>
                             <input type="date" onChange={(event) => this.handleChange("date", event)}></input>
                         </li>
@@ -84,6 +85,7 @@ class AddInfo extends Component {
                                 })}
                             </select>
                         </li>
+
                         <br />
 
                         <li>
