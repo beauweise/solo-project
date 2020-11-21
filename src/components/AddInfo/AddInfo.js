@@ -16,14 +16,14 @@ class AddInfo extends Component {
             waterClarity: 0,
             fishCaught: 0,
             fishSaw: 0,
-            lures:'',
-            notes:''
+            lures: '',
+            notes: ''
         }
     }
     componentDidMount() {
         this.getFormInfo()
         console.log(this.props.store.getWeather);
-        
+
     }
     //getting data for page load from GET_MOVIES
     getFormInfo = () => {
@@ -32,109 +32,108 @@ class AddInfo extends Component {
         this.props.dispatch({ type: 'FETCH_LAKE' });
     }
     handleChange = (propertyName, event) => {
-       if(propertyName === "waterTemp" || propertyName === "waterClarity" 
-        || propertyName === "fishCaught" || propertyName === "fishSaw"){
-        this.setState({
-            addUserData: {
-                ...this.state.addUserData,
-                [propertyName]: Number(event.target.value)
-                
-            }
-        })
-    }else{this.setState({
-        addUserData: {
-            ...this.state.addUserData,
-            [propertyName]: event.target.value
+        if (propertyName === "waterTemp" || propertyName === "waterClarity"
+            || propertyName === "fishCaught" || propertyName === "fishSaw") {
+            this.setState({
+                addUserData: {
+                    ...this.state.addUserData,
+                    [propertyName]: Number(event.target.value)
+                }
+            })
+        } else {
+            this.setState({
+                addUserData: {
+                    ...this.state.addUserData,
+                    [propertyName]: event.target.value
+                }
+            })
         }
-    })}
-    console.log(this.state);
-    
     }
-    submitInfo = () => {
-
+    submitInfo = (event) => {
         this.props.dispatch({ type: 'ADD_DATA', payload: this.state.addUserData })
-        
+        document.getElementById("resetForm").reset();
     }
 
     render() {
         return (
             <div>
-                <ul>
-                    <li>
-                        {/* <Date /> */}
-                        <input type="date" onChange={(event) => this.handleChange("date",event)}></input>
-                    </li>
-                    {this.props.store.userReducer}
-                    <li>
-                        <label>Lake:</label>
-                    <select onChange={(event) => this.handleChange("lake",event)} >
-                            <option hidden value=''>Lake</option>
-                            {this.props.store.getDropDownInfo.getLake.map((lake) => {
-                                return <option key={lake.id} value={lake.id}>{lake.lake}</option>
-                            })}
-                        </select>
-                    </li>
-                    <br />
-                    <li>
-                    <label>Weather:</label>
-                    <select onChange={(event) => this.handleChange("weather",event)} >
-                            <option hidden value=''>Weather</option>
-                            {this.props.store.getDropDownInfo.getWeather.map((weather) => {
-                                return <option key={weather.id} value={weather.id}>{weather.weather}</option>
-                            })}
-                        </select>
-                    </li>
-                    <br />
+                <form  id="resetForm">
+                    <ul>
+                        <li>
+                            <input type="date" onChange={(event) => this.handleChange("date", event)}></input>
+                        </li>
+                        {this.props.store.userReducer}
+                        <li>
+                            <label>Lake:</label>
+                            <select onChange={(event) => this.handleChange("lake", event)} >
+                                <option hidden value=''>Lake</option>
+                                {this.props.store.getDropDownInfo.getLake.map((lake) => {
+                                    return <option key={lake.id} value={lake.id}>{lake.lake}</option>
+                                })}
+                            </select>
+                        </li>
+                        <br />
+                        <li>
+                            <label>Weather:</label>
+                            <select onChange={(event) => this.handleChange("weather", event)} >
+                                <option hidden value=''>Weather</option>
+                                {this.props.store.getDropDownInfo.getWeather.map((weather) => {
+                                    return <option key={weather.id} value={weather.id}>{weather.weather}</option>
+                                })}
+                            </select>
+                        </li>
+                        <br />
 
-                    <li>
-                        <label>Wind:</label>
-                        <select onChange={(event) => this.handleChange("wind",event)} >
-                            <option hidden value=''>Wind</option>
-                            {this.props.store.getDropDownInfo.getWind.map((wind) => {
-                                return <option key={wind.id} value={wind.id}>{wind.wind}</option>
-                            })}
-                        </select>
+                        <li>
+                            <label>Wind:</label>
+                            <select onChange={(event) => this.handleChange("wind", event)} >
+                                <option hidden value=''>Wind</option>
+                                {this.props.store.getDropDownInfo.getWind.map((wind) => {
+                                    return <option key={wind.id} value={wind.id}>{wind.wind}</option>
+                                })}
+                            </select>
                         mph
                     </li>
-                    <br />
-                    <li>
-                        <label>Water Temp</label>
-                        <input type='number' placeholder='Water Temp' onChange={(event) => 
-                            this.handleChange("waterTemp",event)}></input>
+                        <br />
+                        <li>
+                            <label>Water Temp</label>
+                            <input type='number' placeholder='Water Temp' onChange={(event) =>
+                                this.handleChange("waterTemp", event)}></input>
                         °F
                     </li>
-                    <br />
-                    <li>
-                        <label>Water Clarity</label>
-                        <input type='number' placeholder='Water Clarity' onChange={(event) => 
-                            this.handleChange("waterClarity",event)}></input>
+                        <br />
+                        <li>
+                            <label>Water Clarity</label>
+                            <input type='number' placeholder='Water Clarity' onChange={(event) =>
+                                this.handleChange("waterClarity", event)}></input>
                         ft.
                     </li>
-                    <br /><li>
-                        <label>Amount of fish caught:</label>
-                        <input type='number' placeholder='Fish caught' onChange={(event) => 
-                            this.handleChange("fishCaught",event)}></input>
-                    </li>
-                    <br />
-                    <li>
-                        <label>How many fish were seen:</label>
-                        <input type='number' placeholder='Fish saw' onChange={(event) => 
-                            this.handleChange("fishSaw",event)}></input>
-                    </li>
-                    <br />
-                    <li>
-                        <label>Best lures:</label>
-                        <input placeholder='Best Lures of the day' onChange={(event) => 
-                            this.handleChange("lures",event)}></input>
-                    </li>
-                    <br />
-                    <li>
-                        <label>Notes:</label>
-                        <input placeholder='Notes' onChange={(event) => 
-                            this.handleChange("notes",event)}></input>
-                    </li>
+                        <br /><li>
+                            <label>Amount of fish caught:</label>
+                            <input type='number' placeholder='Fish caught' onChange={(event) =>
+                                this.handleChange("fishCaught", event)}></input>
+                        </li>
+                        <br />
+                        <li>
+                            <label>How many fish were seen:</label>
+                            <input type='number' placeholder='Fish saw' onChange={(event) =>
+                                this.handleChange("fishSaw", event)}></input>
+                        </li>
+                        <br />
+                        <li>
+                            <label>Best lures:</label>
+                            <input placeholder='Best Lures of the day' onChange={(event) =>
+                                this.handleChange("lures", event)}></input>
+                        </li>
+                        <br />
+                        <li>
+                            <label>Notes:</label>
+                            <input placeholder='Notes' onChange={(event) =>
+                                this.handleChange("notes", event)}></input>
+                        </li>
 
-                </ul>
+                    </ul>
+                </form>
                 <button onClick={this.submitInfo}>Submit</button>
             </div>
         )

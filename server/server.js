@@ -14,7 +14,7 @@ const windRouter = require('./routes/wind.router');
 const weatherRouter = require('./routes/weather.router');
 const lakeRouter = require('./routes/lake.router');
 const userDataRouter = require('./routes/userData.router');
-
+const historyRouter = require('./routes/history.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -33,6 +33,8 @@ app.use('/api/wind',windRouter);
 app.use('/api/weather',weatherRouter);
 app.use('/api/lake',lakeRouter);
 app.use('/api/userData',userDataRouter);
+app.use('/api/history',historyRouter);
+
 
 
 
