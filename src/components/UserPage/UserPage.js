@@ -11,7 +11,6 @@ class UserPage extends Component {
 //getting data for page load from GET_MOVIES
 getHistory = () => {
     this.props.dispatch({ type: 'FETCH_HISTORY' })
-    // this.props.dispatch({type: 'GET_GENRES'})
 }
 
 //getting details to be sent to details page on click of image

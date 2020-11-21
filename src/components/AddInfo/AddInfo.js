@@ -52,6 +52,8 @@ class AddInfo extends Component {
     submitInfo = (event) => {
         this.props.dispatch({ type: 'ADD_DATA', payload: this.state.addUserData })
         document.getElementById("resetForm").reset();
+        this.props.history.push('/home');
+
     }
 
     render() {
