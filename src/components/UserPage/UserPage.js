@@ -38,11 +38,11 @@ class UserPage extends Component {
 
 
         {this.props.store.getHistory.map((history) => {
-          return <li className='history' key={history.id}
+          return <li className='history' key={history.id} 
             onClick={() => this.getDetails(history.date, history.lake, history.weather, 
               history.wind, history.water_temp, history.water_clarity, history.fish_count, 
               history.see_fish, history.lures, history.notes)}
-          >Date:{history.date}Lake:{history.lake}Wind:{history.wind}</li>
+              >Date:{history.date}Lake:{history.lake}Wind:{history.wind}<button>Edit</button><button>Delete</button></li>
         })}
 
 
