@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import setDropdown from './dropdown.saga';
 import addData from './addData.saga';
 import history from './history.saga';
+import deleteListener from './deleteInfo.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     setDropdown(),
     addData(),
     history(),
+    deleteListener()
   ]);
 }

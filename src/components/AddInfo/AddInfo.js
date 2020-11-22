@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-// import Date from '../Date/Date';
+import { InputLabel, MenuItem, Select, TextField, FormControl, FormHelperText, Button } from '@material-ui/core';
+
 
 
 class AddInfo extends Component {
@@ -137,7 +138,7 @@ class AddInfo extends Component {
 
                     </ul>
                 </form>
-                <button onClick={this.submitInfo}>Submit</button>
+                <Button variant="contained" onClick={this.submitInfo}>Submit</Button>
             </div>
         )
     }

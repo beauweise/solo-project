@@ -26,5 +26,14 @@ router.post('/', (req, res) => {
     res.sendStatus(500);
   });
 });
+router.delete('/:id', (req, res) => {
+  console.log("In delete server-side req with", req.params);
+  // DELETE route code here
+  if (req.isAuthenticated()) {
+    console.log("user is",req.user);
+  }
+  const queryText = `DELETE FROM "user_entered_data" WHERE "id" = $1 AND "user_id" = $2;`
+  pool.query(queryText, [req.params.id, req.user.id]).then((results) => res.sendStatus(200)).catch(() => res.sendStatus(500));
+});
 
 module.exports = router;

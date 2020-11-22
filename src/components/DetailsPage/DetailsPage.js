@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { InputLabel, MenuItem, Select, TextField, FormControl, FormHelperText, Button } from '@material-ui/core';
 
 
 class AboutPage extends Component {
@@ -28,9 +29,9 @@ class AboutPage extends Component {
                 <br/>
                
                
-                {/* <p type = 'text' className = 'details' >{this.props.reduxState.oneMovie.details}</p> */}
+
                 <br />
-                <button onClick={this.backButton}>Back to History</button>
+                <Button variant="contained" onClick={this.backButton}>Back to History</Button>
       </div>
     );
   }
