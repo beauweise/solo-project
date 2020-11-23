@@ -19,6 +19,7 @@ import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import EditPage from '../EditPage/EditPage';
 
 import './App.css';
 
@@ -60,6 +61,12 @@ class App extends Component {
               exact
               path="/info"
               component={AddInfo}
+            />
+            <ProtectedRoute
+              // logged in shows InfoPage else shows LoginPage
+              exact
+              path="/edit"
+              component={EditPage}
             />
             
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { InputLabel, MenuItem, Select, TextField, FormControl, FormHelperText, Button,Alert } from '@material-ui/core';
+import {  Button } from '@material-ui/core';
 
 
 class UserPage extends Component {
@@ -27,15 +27,15 @@ class UserPage extends Component {
     });
     this.props.history.push('/Details');
   }
-  editInfo = (date, lake, weather, wind, water_temp, water_clarity, 
+  editInfo = (id, date, lake, weather, wind, water_temp, water_clarity, 
     fish_count, see_fish, lures, notes) =>{
     this.props.dispatch({
-      type: 'SET_DETAILS',
-      payload: { date: date, lake: lake, weather: weather, wind: wind, 
+      type: 'EDIT_DATA',
+      payload: {id:id, date: date, lake: lake, weather: weather, wind: wind, 
         water_temp: water_temp, water_clarity: water_clarity, 
         fish_count: fish_count, see_fish: see_fish, lures: lures, notes: notes }
     });
-    this.props.history.push('/info')
+    this.props.history.push('/edit')
   }
   deleteInfo = (historyId) => {
     
@@ -51,17 +51,23 @@ class UserPage extends Component {
 
         {this.props.store.getHistory.map((history) => {
           return <li className='history' key={history.id}> 
+            
             <p onClick={() => this.getDetails(history.date, history.lake, history.weather, 
               history.wind, history.water_temp, history.water_clarity, history.fish_count, 
               history.see_fish, history.lures, history.notes)}>
               Date:{history.date}Lake:{history.lake}Wind:{history.wind}</p>
-              <Button variant="contained" onClick ={()=> this.editInfo(history.date, history.lake, history.weather, 
+              
+              <Button variant="contained" onClick ={()=> this.editInfo(history.id, history.date, history.lake, history.weather, 
               history.wind, history.water_temp, history.water_clarity, history.fish_count, 
               history.see_fish, history.lures, history.notes)}>Edit</Button >
               <Button variant="contained"  onClick ={() => this.deleteInfo(history.id)}>Delete</Button></li>
         })}
 
-
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         <LogOutButton className="log-in" />
       </div>
     );

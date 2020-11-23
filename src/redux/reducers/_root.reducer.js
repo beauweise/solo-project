@@ -5,6 +5,7 @@ import getDropDownInfo from './getDropdownInfo.reducer';
 import addData from './addData.reducer';
 import getHistory from './getHistory.reducer';
 import details from './getDetails.reducer';
+import edit from './editData.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   getDropDownInfo,
   addData,
   getHistory,
-  details
+  details,
+  edit
 
 });
 
