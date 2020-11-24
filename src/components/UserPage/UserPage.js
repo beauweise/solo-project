@@ -68,7 +68,7 @@ class UserPage extends Component {
             {this.props.store.getHistory.map((history) => {
               return <li className='history' key={history.id}>
                 Date:{history.date.slice(5, 7) + '/' + history.date.slice(8, 10) + '/' +
-                  history.date.slice(0, 4)} Lake:{history.lake}Wind:{history.wind}
+                  history.date.slice(0, 4)} Lake:{history.lake}Wind:{history.wind} Weather:{history.weather}
 
                 <Button variant="contained" onClick={() => this.getDetails(history.date, history.lake, history.weather,
                   history.wind, history.water_temp, history.water_clarity, history.fish_count,
@@ -84,7 +84,7 @@ class UserPage extends Component {
           <p>{this.props.store.lakeFilter.map((history) => {
             return <li className='history' key={history.id}>
               Date:{history.date.slice(5, 7) + '/' + history.date.slice(8, 10) + '/' +
-                history.date.slice(0, 4)} Lake:{history.lake}Wind:{history.wind}
+                history.date.slice(0, 4)} Lake:{history.lake}Wind:{history.wind}Weather:{history.weather}
   
               <Button variant="contained" onClick={() => this.getDetails(history.date, history.lake, history.weather,
                 history.wind, history.water_temp, history.water_clarity, history.fish_count,

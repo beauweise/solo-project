@@ -13,7 +13,8 @@ router.get('/:id', (req, res) => {
   JOIN "lake" ON "user_entered_data"."lake_id" = "lake"."id"
   JOIN "weather" ON "user_entered_data"."weather_id" = "weather"."id"
   JOIN "wind" ON "user_entered_data"."wind_id" = "wind"."id"
-  WHERE "lake_id" = ${req.params.id}`;
+  WHERE "lake_id" = ${req.params.id}
+  ORDER BY "date" DESC`;
 
   pool.query(queryText).then((result) => {
     console.log(result.rows);
