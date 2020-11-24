@@ -13,7 +13,7 @@ class AboutPage extends Component {
     return (
       <div>
         <h1>Details!</h1>
-
+                
                 <p>Date:{this.props.store.details.date}</p>
                 <p>Lake:{this.props.store.details.lake}</p>
                 <p>Weather:{this.props.store.details.weather}</p>

@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
   // GET route code here
 });
 
@@ -36,5 +36,8 @@ router.delete('/:id', (req, res) => {
   .then((results) => res.sendStatus(200))
   .catch(() => res.sendStatus(500));
 });
+router.put('/:id',(req,res)=>{
+
+})
 
 module.exports = router;

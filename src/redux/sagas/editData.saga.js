@@ -5,12 +5,9 @@ import axios from 'axios';
 function* dataReset(action) {
     //getting genre to set on page load for the add movie page dropdown selection
     try {
-        const historyResponse = yield axios.get(`/api/history`);
-        console.log(historyResponse.data);
-        
-        yield put({ type: 'GET_HISTORY', payload: historyResponse.data })
+        yield axios.put('/api/userData', action.payload);
     } catch (error) {
-        console.log(error,action.payload);
+        console.log('error in post', error);
     }
 }
 function* resetData() {

@@ -76,21 +76,22 @@ class editPage extends Component {
 
     render() {
         const info = this.props.store.edit
+        
         return (
             <div>
-
                 <form key={info.id} id="resetForm">
                     <ul>
-                        
                         <li>
-                            <input type="date" defaultValue = {info.date}
-                            onChange={(event) => this.handleChange("date", event)}></input>
+                        
+                        {info.date && 
+                            <input type="date" value = {info.date.slice(0,10)}
+                                onChange={(event) => this.handleChange("date", event)}></input>}
                         </li>
                         {this.props.store.userReducer}
                         <li>
                             <label>Lake:</label>
                             <select defaultValue = {info.lake} onChange={(event) => this.handleChange("lake", event)} >
-                                <option hidden value= '' >Lake</option>
+                                <option  value= {info.lake} >{info.lake}</option>
                                 {this.props.store.getDropDownInfo.getLake.map((lake) => { 
                                     return  <option key={lake.id} value={lake.id}>{lake.lake}</option>
                                 })}
@@ -101,7 +102,7 @@ class editPage extends Component {
                             <label>Weather:</label>
                             <select defaultValue = {info.weather}
                             onChange={(event) => this.handleChange("weather", event)} >
-                                <option hidden value=''>Weather</option>
+                                <option value= {info.weather} >{info.weather}</option>
                                 {this.props.store.getDropDownInfo.getWeather.map((weather) => {
                                     return <option key={weather.id} value={weather.id}>{weather.weather}</option>
                                 })}
@@ -114,7 +115,7 @@ class editPage extends Component {
                             <label>Wind:</label>
                             <select defaultValue = {info.wind}
                             onChange={(event) => this.handleChange("wind", event)} >
-                                <option hidden value=''>Wind</option>
+                                <option value={info.wind} >{info.wind}</option>
                                 {this.props.store.getDropDownInfo.getWind.map((wind) => {
                                     return <option key={wind.id} value={wind.id}>{wind.wind}</option>
                                 })}
