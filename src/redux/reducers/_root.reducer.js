@@ -6,6 +6,7 @@ import addData from './addData.reducer';
 import getHistory from './getHistory.reducer';
 import details from './getDetails.reducer';
 import edit from './editData.reducer';
+import lakeFilter from './lakefilter.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   addData,
   getHistory,
   details,
-  edit
+  edit,
+  lakeFilter
 
 });
 

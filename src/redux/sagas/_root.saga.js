@@ -7,6 +7,7 @@ import addData from './addData.saga';
 import history from './history.saga';
 import deleteListener from './deleteInfo.saga';
 import editData from './editData.saga';
+import lakeFilter from './lakeFilter.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -24,6 +25,7 @@ export default function* rootSaga() {
     addData(),
     history(),
     deleteListener(),
-    editData
+    editData(),
+    lakeFilter()
   ]);
 }

@@ -6,7 +6,22 @@ const router = express.Router();
  * GET route template
  */
 router.get('/:id', (req, res) => {
-  // GET route code here
+  const queryText = `
+  SELECT "user_entered_data"."id","user_id", "date", "lake_id", 
+  "weather_id", "water_temp","water_clarity", "fish_count","see_fish",
+  "lures", "wind_id", "notes","lake","weather","wind" FROM "user_entered_data"
+  JOIN "lake" ON "user_entered_data"."lake_id" = "lake"."id"
+  JOIN "weather" ON "user_entered_data"."weather_id" = "weather"."id"
+  JOIN "wind" ON "user_entered_data"."wind_id" = "wind"."id"
+  WHERE "lake_id" = ${req.params.id}`;
+
+  pool.query(queryText).then((result) => {
+    console.log(result.rows);
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log(`Error on query ${error}`);
+    res.sendStatus(500);
+  });
 });
 
 /**
@@ -36,8 +51,20 @@ router.delete('/:id', (req, res) => {
   .then((results) => res.sendStatus(200))
   .catch(() => res.sendStatus(500));
 });
-router.put('/:id',(req,res)=>{
 
+router.put('/:id',(req,res)=>{
+  console.log(req.body)
+  const queryText = `UPDATE "movies"
+  SET "title" = $1, "description" = $2
+  WHERE "id" = $3;`;
+  pool.query(queryText, [req.body.title, req.body.description, req.body.id] )
+  .then( (result) => {
+    res.sendStatus(200)
+  }) .catch( (error) => {
+    console.log('error in put', error);
+    res.sendStatus(500);
+  })
 })
+
 
 module.exports = router;

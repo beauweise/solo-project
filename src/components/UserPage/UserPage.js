@@ -13,8 +13,12 @@ class UserPage extends Component {
   //getting data for page load from GET_MOVIES
   getHistory = () => {
     this.props.dispatch({ type: 'FETCH_HISTORY' })
-  }
+    this.props.dispatch({ type: 'FETCH_LAKE' });
 
+  }
+  filterPage = (event) => {
+    this.props.dispatch({ type: 'FILTER_DATA', payload: event.target.value })
+  }
   //getting details to be sent to details page on click of image
   //also redirecting page to details page
   getDetails = (date, lake, weather, wind, water_temp, water_clarity,
@@ -52,50 +56,53 @@ class UserPage extends Component {
         <h1 id="welcome">Welcome, {this.props.store.user.username}! Let's view your trip History!</h1>
         <p>Please select a trip for more details</p>
 
-        {/* <select id="Genre" placeholder= "Genre" name='Genre' onChange={(event) => this.handleChange(event)} >
-                    <option hidden value=''>Genre</option>
-                    {this.props.reduxState.genres.map((genre) => {
-                        return <option  key = {genre.id} value={genre.id}>{genre.name}</option>
-                    })}
-               </select> */}
+        <select onChange={(event) => this.filterPage(event)} >
+          <option hidden value=''>Lake</option>
+          {this.props.store.getDropDownInfo.getLake.map((lake) => {
+            return <option key={lake.id} value={lake.id}>{lake.lake}</option>
+          })}
+        </select>
 
-        {this.props.store.getHistory.map((history) => {
-          return <li className='history' key={history.id}>
+        {this.props.store.lakeFilter.length === 0 ?
+          <p>
+            {this.props.store.getHistory.map((history) => {
+              return <li className='history' key={history.id}>
+                Date:{history.date.slice(5, 7) + '/' + history.date.slice(8, 10) + '/' +
+                  history.date.slice(0, 4)} Lake:{history.lake}Wind:{history.wind}
 
-            <p>
+                <Button variant="contained" onClick={() => this.getDetails(history.date, history.lake, history.weather,
+                  history.wind, history.water_temp, history.water_clarity, history.fish_count,
+                  history.see_fish, history.lures, history.notes)}>Details</Button>
+                <Button variant="contained" onClick={() => this.editInfo(history.id, history.date, history.lake, history.weather,
+                  history.wind, history.water_temp, history.water_clarity, history.fish_count,
+                  history.see_fish, history.lures, history.notes)}>Edit</Button >
+                <Button variant="contained" onClick={() => this.deleteInfo(history.id)}>Delete</Button></li>
+            })}
+
+          </p>
+          :
+          <p>{this.props.store.lakeFilter.map((history) => {
+            return <li className='history' key={history.id}>
               Date:{history.date.slice(5, 7) + '/' + history.date.slice(8, 10) + '/' +
-                history.date.slice(0, 4)} Lake:{history.lake}Wind:{history.wind}</p>
-
-            <Button variant="contained" onClick={() => this.getDetails(history.date, history.lake, history.weather,
-              history.wind, history.water_temp, history.water_clarity, history.fish_count,
-              history.see_fish, history.lures, history.notes)}>Details</Button>
-            <Button variant="contained" onClick={() => this.editInfo(history.id, history.date, history.lake, history.weather,
-              history.wind, history.water_temp, history.water_clarity, history.fish_count,
-              history.see_fish, history.lures, history.notes)}>Edit</Button >
-            <Button variant="contained" onClick={() => this.deleteInfo(history.id)}>Delete</Button></li>
-        })}
+                history.date.slice(0, 4)} Lake:{history.lake}Wind:{history.wind}
+  
+              <Button variant="contained" onClick={() => this.getDetails(history.date, history.lake, history.weather,
+                history.wind, history.water_temp, history.water_clarity, history.fish_count,
+                history.see_fish, history.lures, history.notes)}>Details</Button>
+              <Button variant="contained" onClick={() => this.editInfo(history.id, history.date, history.lake, history.weather,
+                history.wind, history.water_temp, history.water_clarity, history.fish_count,
+                history.see_fish, history.lures, history.notes)}>Edit</Button >
+              <Button variant="contained" onClick={() => this.deleteInfo(history.id)}>Delete</Button></li>
+          })}</p>
+        }
+        
         <br />
-        {/* {this.props.reduxState.reset_Movies.length === 0 ?
-               <p>
-                   {this.props.reduxState.movies.map((movie) => {
-                    return <img className='movies'
-                        onClick={() => this.getDetails(movie.id, movie.poster, movie.description)}
-                        key={movie.id} alt="" src={movie.poster} />
-                })}
-                
-               </p>
-               :
-                <p>{this.props.reduxState.reset_Movies.map((movie) => {
-                    return <img className='movies'
-                        onClick={() => this.getDetails(movie.id, movie.poster, movie.description)}
-                        key={movie.movie_id} alt="" src={movie.poster} />
-                })}</p>
-                }
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/> */}
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <LogOutButton className="log-in" />
       </div>
     );
