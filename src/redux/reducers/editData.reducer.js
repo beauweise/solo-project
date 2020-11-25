@@ -1,6 +1,6 @@
 const edit = (state = {}, action) => {
     switch (action.type) {
-      case 'EDIT_DATA':
+      case 'CHANGE_DATA':
         return action.payload;
       default:
         return state;

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function* dataReset(action) {
     //getting genre to set on page load for the add movie page dropdown selection
+   console.log('3333333333333333333',action.payload);
    
     try {
     let response = yield axios.put('/api/userData', action.payload)

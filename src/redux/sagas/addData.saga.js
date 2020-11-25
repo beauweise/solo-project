@@ -7,7 +7,7 @@ function* addData(action) {
    
     try {
        let response = yield axios.post('/api/userData', action.payload);
-        yield axios.put ({ type: 'GET_HISTORY', payload: response.data })
+        yield put({ type: 'FETCH_HISTORY', payload: response.data })
     } catch (error) {
         console.log('error in post', error);
     }

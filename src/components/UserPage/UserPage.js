@@ -33,16 +33,16 @@ class UserPage extends Component {
     });
     this.props.history.push('/Details');
   }
-  editInfo = (id, date, lake, weather, wind, water_temp, water_clarity,
+  editInfo = (id, date, lake, lake_id, weather,weather_id, wind,wind_id, water_temp, water_clarity,
     fish_count, see_fish, lures, notes) => {
       this.props.dispatch({
-      type: 'EDIT_DATA',
+      type: 'CHANGE_DATA',
       payload: {
-        id: id, date: date, lake: lake, weather: weather, wind: wind,
+        id: id, date: date, lake: lake, lake_id:lake_id, weather: weather,weather_id:weather_id, wind:wind, wind_id: wind_id,
         water_temp: water_temp, water_clarity: water_clarity,
         fish_count: fish_count, see_fish: see_fish, lures: lures, notes: notes
       }
-
+      
     });
     this.props.history.push('/edit')
   }
@@ -73,8 +73,8 @@ class UserPage extends Component {
                 <Button variant="contained" onClick={() => this.getDetails(history.date, history.lake, history.weather,
                   history.wind, history.water_temp, history.water_clarity, history.fish_count,
                   history.see_fish, history.lures, history.notes)}>Details</Button>
-                <Button variant="contained" onClick={() => this.editInfo(history.id, history.date, history.lake, history.weather,
-                  history.wind, history.water_temp, history.water_clarity, history.fish_count,
+                <Button variant="contained" onClick={() => this.editInfo(history.id, history.date, history.lake,history.lake_id, 
+                history.weather,history.weather_id,history.wind,history.wind_id, history.water_temp, history.water_clarity, history.fish_count,
                   history.see_fish, history.lures, history.notes)}>Edit</Button >
                 <Button variant="contained" onClick={() => this.deleteInfo(history.id)}>Delete</Button></li>
             })}
@@ -90,9 +90,9 @@ class UserPage extends Component {
               <Button variant="contained" onClick={() => this.getDetails(history.date, history.lake, history.weather,
                 history.wind, history.water_temp, history.water_clarity, history.fish_count,
                 history.see_fish, history.lures, history.notes)}>Details</Button>
-              <Button variant="contained" onClick={() => this.editInfo(history.id, history.date, history.lake, history.weather,
-                history.wind, history.water_temp, history.water_clarity, history.fish_count,
-                history.see_fish, history.lures, history.notes)}>Edit</Button >
+              <Button variant="contained" onClick={() => this.editInfo(history.id, history.date, history.lake,history.lake_id, 
+                history.weather,history.weather_id,history.wind,history.wind_id, history.water_temp, history.water_clarity, history.fish_count,
+                  history.see_fish, history.lures, history.notes)}>Edit</Button >
               <Button variant="contained" onClick={() => this.deleteInfo(history.id)}>Delete</Button></li>
           })}</p>
         }

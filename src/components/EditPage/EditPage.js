@@ -24,24 +24,17 @@ class editPage extends Component {
         }
     }
     componentDidMount() {
-        this.editInfo();
         this.getFormInfo();
     }
-    editInfo = ()=>{
-        this.setState({
-            addUserData:{
-            date: (this.props.store.editData),
-            lake: (this.props.store.editData),
-            weather: (this.props.store.editData),
-            wind: (this.props.store.editData),
-            waterTemp: (this.props.store.editData),
-            waterClarity: (this.props.store.editData),
-            fishCaught: (this.props.store.editData),
-            fishSaw:(this.props.store.editData),
-            lures: (this.props.store.editData),
-            notes: (this.props.store.editData)
-            }
-        })
+    componentDidUpdate(){
+        
+        if(this.state.addUserData.id !== this.props.store.edit.id){
+            this.setState({
+                addUserData: this.props.store.edit
+            })
+        }
+        console.log('99999999999',this.state.addUserData);
+        
     }
 
     getFormInfo = () => {
@@ -81,7 +74,6 @@ class editPage extends Component {
                 <form key={info.id} id="resetForm">
                     <ul>
                         <li>
-                        
                         {info.date && 
                             <input type="date" value = {info.date.slice(0,10)}
                                 onChange={(event) => this.handleChange("date", event)}></input>}
@@ -89,7 +81,7 @@ class editPage extends Component {
                         {this.props.store.userReducer}
                         <li>
                             <label>Lake:</label>
-                            <select defaultValue = {info.lake} onChange={(event) => this.handleChange("lake", event)} >
+                            <select defaultValue = {info.lake} onChange={(event) => this.handleChange("lake_id", event)} >
                                 <option  value= {info.lake} >{info.lake}</option>
                                 {this.props.store.getDropDownInfo.getLake.map((lake) => { 
                                     return  <option key={lake.id} value={lake.id}>{lake.lake}</option>
@@ -100,7 +92,7 @@ class editPage extends Component {
                         <li>
                             <label>Weather:</label>
                             <select defaultValue = {info.weather}
-                            onChange={(event) => this.handleChange("weather", event)} >
+                            onChange={(event) => this.handleChange("weather_id", event)} >
                                 <option value= {info.weather} >{info.weather}</option>
                                 {this.props.store.getDropDownInfo.getWeather.map((weather) => {
                                     return <option key={weather.id} value={weather.id}>{weather.weather}</option>
@@ -113,7 +105,7 @@ class editPage extends Component {
                         <li>
                             <label>Wind:</label>
                             <select defaultValue = {info.wind}
-                            onChange={(event) => this.handleChange("wind", event)} >
+                            onChange={(event) => this.handleChange("wind_id", event)} >
                                 <option value={info.wind} >{info.wind}</option>
                                 {this.props.store.getDropDownInfo.getWind.map((wind) => {
                                     return <option key={wind.id} value={wind.id}>{wind.wind}</option>

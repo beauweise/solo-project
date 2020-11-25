@@ -4,6 +4,8 @@ import axios from 'axios';
 
 function* getHistory(action) {
     //getting genre to set on page load for the add movie page dropdown selection
+    console.log('222222222222222222222',action.payload);
+    
     try {
         const historyResponse = yield axios.get(`/api/history`);
         console.log(historyResponse.data);

@@ -15,7 +15,7 @@ class AddInfo extends Component {
             wind: '',
             waterTemp: 0,
             waterClarity: 0,
-            fishCaught: 0,
+            fish_count: 0,
             fishSaw: 0,
             lures: '',
             notes: ''
@@ -34,7 +34,7 @@ class AddInfo extends Component {
     }
     handleChange = (propertyName, event) => {
         if (propertyName === "waterTemp" || propertyName === "waterClarity"
-            || propertyName === "fishCaught" || propertyName === "fishSaw") {
+            || propertyName === "fish_count" || propertyName === "fishSaw") {
             this.setState({
                 addUserData: {
                     ...this.state.addUserData,
@@ -115,7 +115,7 @@ class AddInfo extends Component {
                         <br /><li>
                             <label>Amount of fish caught:</label>
                             <input type='number' placeholder='Fish caught' onChange={(event) =>
-                                this.handleChange("fishCaught", event)}></input>
+                                this.handleChange("fish_count", event)}></input>
                         </li>
                         <br />
                         <li>

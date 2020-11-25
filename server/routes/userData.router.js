@@ -32,12 +32,14 @@ router.get('/:id', (req, res) => {
  * POST route template
  */
 router.post('/',rejectUnauthenticated, (req, res) => {
+  console.log("inreq.body",req.body);
+  
   let queryText = `INSERT INTO "user_entered_data" ("user_id","date","lake_id","weather_id",
   "water_temp","water_clarity","fish_count","see_fish","lures","wind_id","notes")
   values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`;
 
   pool.query(queryText, [req.user.id, req.body.date, req.body.lake, req.body.weather,
-  req.body.fishCaught, req.body.fishSaw, req.body.waterTemp, req.body.waterClarity,
+  req.body.waterTemp, req.body.fishSaw, req.body.fish_count, req.body.waterClarity,
   req.body.lures, req.body.wind, req.body.notes]).then((result) => {
     res.sendStatus(201);
   }).catch((error) => {
@@ -57,14 +59,15 @@ router.delete('/:id',rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/',rejectUnauthenticated, (req, res) => {
-  console.log(req.body)
+  console.log('66666666666666666666',req.body);
+  
   const queryText = `UPDATE "user_entered_data"
   SET "date" = $1, "lake_id" = $2,"weather_id" = $3, "water_temp" = $4,"water_clarity" = $5,
   "fish_count" = $6,"see_fish" = $7, "lures" = $8,"wind_id" = $9, "notes" = $10
   WHERE "id" = $11;`;
   pool.query(queryText, [req.body.date, req.body.lake_id, req.body.weather_id, 
   req.body.water_temp, req.body.water_clarity,req.body.fish_count, req.body.see_fish,
-   req.body.lures, req.body.wind, req.body.notes, req.body.id])
+   req.body.lures, req.body.wind_id, req.body.notes, req.body.id])
     .then((result) => {
       res.sendStatus(200)
     }).catch((error) => {
