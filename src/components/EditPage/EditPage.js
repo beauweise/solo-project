@@ -69,9 +69,8 @@ class editPage extends Component {
     }
     updateInfo = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'RESET_DATA', payload: this.state.addUserData })
+        this.props.dispatch({ type: 'EDIT_DATA', payload: this.state.addUserData })
         this.props.history.push('/home');
-
     }
 
     render() {

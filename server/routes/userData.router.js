@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route template
@@ -28,43 +31,46 @@ router.get('/:id', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {  
+router.post('/',rejectUnauthenticated, (req, res) => {
   let queryText = `INSERT INTO "user_entered_data" ("user_id","date","lake_id","weather_id",
   "water_temp","water_clarity","fish_count","see_fish","lures","wind_id","notes")
   values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`;
 
   pool.query(queryText, [req.user.id, req.body.date, req.body.lake, req.body.weather,
-    req.body.fishCaught,req.body.fishSaw,req.body.waterTemp,req.body.waterClarity,
+  req.body.fishCaught, req.body.fishSaw, req.body.waterTemp, req.body.waterClarity,
   req.body.lures, req.body.wind, req.body.notes]).then((result) => {
     res.sendStatus(201);
   }).catch((error) => {
     res.sendStatus(500);
   });
 });
-router.delete('/:id', (req, res) => {
+router.delete('/:id',rejectUnauthenticated, (req, res) => {
   console.log("In delete server-side req with", req.params);
   // DELETE route code here
   if (req.isAuthenticated()) {
-    console.log("user is",req.user);
+    console.log("user is", req.user);
   }
   const queryText = `DELETE FROM "user_entered_data" WHERE "id" = $1 AND "user_id" = $2;`
   pool.query(queryText, [req.params.id, req.user.id])
-  .then((results) => res.sendStatus(200))
-  .catch(() => res.sendStatus(500));
+    .then((results) => res.sendStatus(200))
+    .catch(() => res.sendStatus(500));
 });
 
-router.put('/:id',(req,res)=>{
+router.put('/',rejectUnauthenticated, (req, res) => {
   console.log(req.body)
-  const queryText = `UPDATE "movies"
-  SET "title" = $1, "description" = $2
-  WHERE "id" = $3;`;
-  pool.query(queryText, [req.body.title, req.body.description, req.body.id] )
-  .then( (result) => {
-    res.sendStatus(200)
-  }) .catch( (error) => {
-    console.log('error in put', error);
-    res.sendStatus(500);
-  })
+  const queryText = `UPDATE "user_entered_data"
+  SET "date" = $1, "lake_id" = $2,"weather_id" = $3, "water_temp" = $4,"water_clarity" = $5,
+  "fish_count" = $6,"see_fish" = $7, "lures" = $8,"wind_id" = $9, "notes" = $10
+  WHERE "id" = $11;`;
+  pool.query(queryText, [req.body.date, req.body.lake_id, req.body.weather_id, 
+  req.body.water_temp, req.body.water_clarity,req.body.fish_count, req.body.see_fish,
+   req.body.lures, req.body.wind, req.body.notes, req.body.id])
+    .then((result) => {
+      res.sendStatus(200)
+    }).catch((error) => {
+      console.log('error in put', error);
+      res.sendStatus(500);
+    })
 })
 
 

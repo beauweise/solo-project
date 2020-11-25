@@ -35,13 +35,14 @@ class UserPage extends Component {
   }
   editInfo = (id, date, lake, weather, wind, water_temp, water_clarity,
     fish_count, see_fish, lures, notes) => {
-    this.props.dispatch({
+      this.props.dispatch({
       type: 'EDIT_DATA',
       payload: {
         id: id, date: date, lake: lake, weather: weather, wind: wind,
         water_temp: water_temp, water_clarity: water_clarity,
         fish_count: fish_count, see_fish: see_fish, lures: lures, notes: notes
       }
+
     });
     this.props.history.push('/edit')
   }
@@ -62,7 +63,6 @@ class UserPage extends Component {
             return <option key={lake.id} value={lake.id}>{lake.lake}</option>
           })}
         </select>
-
         {this.props.store.lakeFilter.length === 0 ?
           <p>
             {this.props.store.getHistory.map((history) => {
@@ -81,6 +81,7 @@ class UserPage extends Component {
 
           </p>
           :
+          
           <p>{this.props.store.lakeFilter.map((history) => {
             return <li className='history' key={history.id}>
               Date:{history.date.slice(5, 7) + '/' + history.date.slice(8, 10) + '/' +

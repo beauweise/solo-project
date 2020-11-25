@@ -1,11 +1,14 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+  } = require('../modules/authentication-middleware');
 
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/',rejectUnauthenticated, (req, res) => {
   const queryText = `
   SELECT "user_entered_data"."id","user_id", "date", "lake_id", 
   "weather_id", "water_temp","water_clarity", "fish_count","see_fish",

@@ -1,12 +1,13 @@
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest,put } from 'redux-saga/effects';
 import axios from 'axios';
 
 
 function* addData(action) {
     //getting genre to set on page load for the add movie page dropdown selection
+   
     try {
-        yield axios.post('/api/userData', action.payload);
-        
+       let response = yield axios.post('/api/userData', action.payload);
+        yield axios.put ({ type: 'GET_HISTORY', payload: response.data })
     } catch (error) {
         console.log('error in post', error);
     }
