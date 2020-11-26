@@ -10,20 +10,21 @@ class AboutPage extends Component {
 }
 
   render() {
+    const details = this.props.store.details
     return (
       <div>
         <h1>Details!</h1>
-                
-                <p>Date:{this.props.store.details.date}</p>
-                <p>Lake:{this.props.store.details.lake}</p>
-                <p>Weather:{this.props.store.details.weather}</p>
-                <p>Wind:{this.props.store.details.wind}</p>
-                <p>Water Temp:{this.props.store.details.water_temp}°F</p>
-                <p>Water Clarity:{this.props.store.details.water_clarity}ft.</p>
-                <p>Total Fish Caught:{this.props.store.details.fish_count}</p>
-                <p>Total Fish Saw:{this.props.store.details.see_fish}</p>
-                <p>Best Lures of the Trip:{this.props.store.details.lures}</p>
-                <p>Notes for the Trip:{this.props.store.details.notes}</p>
+                <p>Date:{details.date.slice(5, 7) + '/' + details.date.slice(8, 10)
+                 + '/' + details.date.slice(0, 4)}</p>
+                <p>Lake:{details.lake}</p>
+                <p>Weather:{details.weather}</p>
+                <p>Wind:{details.wind}</p>
+                <p>Water Temp:{details.water_temp}°F</p>
+                <p>Water Clarity:{details.water_clarity}ft.</p>
+                <p>Total Fish Caught:{details.fish_count}</p>
+                <p>Total Fish Saw:{details.see_fish}</p>
+                <p>Best Lures of the Trip:{details.lures}</p>
+                <p>Notes for the Trip:{details.notes}</p>
 
 
                 <br/>

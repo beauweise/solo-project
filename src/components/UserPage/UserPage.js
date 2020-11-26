@@ -78,10 +78,8 @@ class UserPage extends Component {
                   history.see_fish, history.lures, history.notes)}>Edit</Button >
                 <Button variant="contained" onClick={() => this.deleteInfo(history.id)}>Delete</Button></li>
             })}
-
           </p>
-          :
-          
+          :          
           <p>{this.props.store.lakeFilter.map((history) => {
             return <li className='history' key={history.id}>
               Date:{history.date.slice(5, 7) + '/' + history.date.slice(8, 10) + '/' +
