@@ -39,7 +39,7 @@ router.post('/',rejectUnauthenticated, (req, res) => {
   values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`;
 
   pool.query(queryText, [req.user.id, req.body.date, req.body.lake, req.body.weather,
-  req.body.waterTemp, req.body.fishSaw, req.body.fish_count, req.body.waterClarity,
+  req.body.waterTemp, req.body.waterClarity, req.body.fish_count, req.body.fishSaw,
   req.body.lures, req.body.wind, req.body.notes]).then((result) => {
     res.sendStatus(201);
   }).catch((error) => {
