@@ -73,8 +73,9 @@ class UserPage extends Component {
                 <Button variant="contained" onClick={() => this.getDetails(history.date, history.lake, history.weather,
                   history.wind, history.water_temp, history.water_clarity, history.fish_count,
                   history.see_fish, history.lures, history.notes)}>Details</Button>
-                <Button variant="contained" onClick={() => this.editInfo(history.id, history.date, history.lake,history.lake_id, 
-                history.weather,history.weather_id,history.wind,history.wind_id, history.water_temp, history.water_clarity, history.fish_count,
+                <Button variant="contained" onClick={() => this.editInfo(history.id, 
+                history.date, history.lake,history.lake_id,history.weather,history.weather_id,
+                history.wind,history.wind_id, history.water_temp, history.water_clarity, history.fish_count,
                   history.see_fish, history.lures, history.notes)}>Edit</Button >
                 <Button variant="contained" onClick={() => this.deleteInfo(history.id)}>Delete</Button></li>
             })}

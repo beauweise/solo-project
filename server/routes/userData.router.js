@@ -66,7 +66,7 @@ router.put('/',rejectUnauthenticated, (req, res) => {
   "fish_count" = $6,"see_fish" = $7, "lures" = $8,"wind_id" = $9, "notes" = $10
   WHERE "id" = $11;`;
   pool.query(queryText, [req.body.date, req.body.lake_id, req.body.weather_id, 
-  req.body.water_temp, req.body.water_clarity,req.body.fish_count, req.body.see_fish,
+  req.body.waterTemp, req.body.waterClarity,req.body.fishCaught, req.body.fishSaw,
    req.body.lures, req.body.wind_id, req.body.notes, req.body.id])
     .then((result) => {
       res.sendStatus(200)
