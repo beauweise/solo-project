@@ -15,10 +15,10 @@ class editPage extends Component {
             lake: '',
             weather: '',
             wind: '',
-            waterTemp: 0,
-            waterClarity: 0,
-            fishCaught: 0,
-            fishSaw: 0,
+            waterTemp: '',
+            waterClarity: '',
+            fishCaught: '',
+            fishSaw: '',
             lures: '',
             notes: ''
         }
@@ -43,15 +43,15 @@ class editPage extends Component {
         this.props.dispatch({ type: 'FETCH_LAKE' });
     }
     handleChange = (propertyName, event) => {
-        if (propertyName === "waterTemp" || propertyName === "waterClarity"
-            || propertyName === "fishCaught" || propertyName === "fishSaw") {
-            this.setState({
-                addUserData: {
-                    ...this.state.addUserData,
-                    [propertyName]: Number(event.target.value)
-                }
-            })
-        } else {
+        // if (propertyName === "waterTemp" || propertyName === "waterClarity"
+        //     || propertyName === "fishCaught" || propertyName === "fishSaw") {
+        //     this.setState({
+        //         addUserData: {
+        //             ...this.state.addUserData,
+        //             [propertyName]: Number(event.target.value)
+        //         }
+        //     })
+        // } else {
             this.setState({
                 addUserData: {
                     ...this.state.addUserData,
@@ -59,7 +59,7 @@ class editPage extends Component {
                 }
             })
         }
-    }
+    // }
     updateInfo = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'EDIT_DATA', payload: this.state.addUserData })

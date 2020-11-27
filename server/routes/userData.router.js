@@ -60,13 +60,16 @@ router.delete('/:id',rejectUnauthenticated, (req, res) => {
 
 router.put('/',rejectUnauthenticated, (req, res) => {
   console.log('66666666666666666666',req.body);
-  
+  const waterTemp = Number(req.body.waterTemp);
+  const waterClarity = Number(req.body.waterClarity);
+  const fishCaught = Number(req.body.fishCaught);
+  const fishSaw = Number(req.body.fishSaw);
   const queryText = `UPDATE "user_entered_data"
   SET "date" = $1, "lake_id" = $2,"weather_id" = $3, "water_temp" = $4,"water_clarity" = $5,
   "fish_count" = $6,"see_fish" = $7, "lures" = $8,"wind_id" = $9, "notes" = $10
   WHERE "id" = $11;`;
-  pool.query(queryText, [req.body.date, req.body.lake_id, req.body.weather_id, 
-  req.body.waterTemp, req.body.waterClarity,req.body.fishCaught, req.body.fishSaw,
+  pool.query(queryText, [req.body.date, req.body.lake_id, 
+  req.body.weather_id, waterTemp, waterClarity,fishCaught, fishSaw,
    req.body.lures, req.body.wind_id, req.body.notes, req.body.id])
     .then((result) => {
       res.sendStatus(200)
