@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Button } from '@material-ui/core';
+import { Button, Table, Paper, TableBody, TableCell,
+  TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 
 class UserPage extends Component {
