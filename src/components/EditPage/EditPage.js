@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Button } from '@material-ui/core';
-
+import { Button, Paper } from '@material-ui/core';
+import './EditPage';
 
 
 class editPage extends Component {
@@ -33,8 +33,6 @@ class editPage extends Component {
                 addUserData: this.props.store.edit
             })
         }
-        console.log('99999999999',this.state.addUserData);
-        
     }
 
     getFormInfo = () => {
@@ -43,15 +41,6 @@ class editPage extends Component {
         this.props.dispatch({ type: 'FETCH_LAKE' });
     }
     handleChange = (propertyName, event) => {
-        // if (propertyName === "waterTemp" || propertyName === "waterClarity"
-        //     || propertyName === "fishCaught" || propertyName === "fishSaw") {
-        //     this.setState({
-        //         addUserData: {
-        //             ...this.state.addUserData,
-        //             [propertyName]: Number(event.target.value)
-        //         }
-        //     })
-        // } else {
             this.setState({
                 addUserData: {
                     ...this.state.addUserData,
@@ -71,7 +60,7 @@ class editPage extends Component {
         
         return (
             <div>
-                <form key={info.id} id="resetForm">
+                <Paper className ="editTable">
                     <ul>
                         <li>
                         {info.date && 
@@ -152,8 +141,9 @@ class editPage extends Component {
                         </li>
 
                     </ul>
-                </form>
-                <Button variant="contained" onClick={this.updateInfo}>Update</Button>
+                
+                <Button className="btn"variant="contained" onClick={this.updateInfo}>Update</Button>
+            </Paper>
             </div>
         )
     }

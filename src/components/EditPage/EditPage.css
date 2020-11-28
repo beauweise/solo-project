@@ -1,0 +1,13 @@
+.editTable{
+    width: 30%;
+    margin-top: 1em;
+    padding: 1em;
+    text-align: left;
+    margin: auto;
+}
+ul{
+    list-style-type: none
+}
+.btn{
+   float: right;
+}

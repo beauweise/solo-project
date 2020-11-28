@@ -4,6 +4,7 @@
     display: inline-block;
     color: #0a0a0a;
     text-align: center;
+
     /* align-items: center; */
 }
 
@@ -30,7 +31,7 @@
 }
 
 .nav-link:hover {
-  background-color: #008183;
+  background-color: rgb(13, 120, 91);
 }
 
 .nav-right {

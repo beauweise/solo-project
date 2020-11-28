@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Button } from '@material-ui/core';
+import { Button, Card } from '@material-ui/core';
+import './AddInfo.css';
 
 
 
@@ -52,7 +53,7 @@ class AddInfo extends Component {
     }
     submitInfo = (event) => {
         this.props.dispatch({ type: 'ADD_DATA', payload: this.state.addUserData })
-        document.getElementById("resetForm").reset();
+
         this.props.history.push('/home');
 
     }
@@ -60,8 +61,9 @@ class AddInfo extends Component {
     render() {
         return (
             <div>
-                <form  id="resetForm">
-                    <ul>
+                <Card className="AddInfo" >
+                    <h1>Log New Trip</h1>
+                    <ul className ='list'>
                         <li>
                             <input type="date" onChange={(event) => this.handleChange("date", event)}></input>
                         </li>
@@ -132,13 +134,14 @@ class AddInfo extends Component {
                         <br />
                         <li>
                             <label>Notes:</label>
-                            <input placeholder='Notes' onChange={(event) =>
+                            <input placeholder='Notes' className="textBox" onChange={(event) =>
                                 this.handleChange("notes", event)}></input>
                         </li>
 
                     </ul>
-                </form>
-                <Button variant="contained" onClick={this.submitInfo}>Submit</Button>
+                
+                <Button className= 'btn' variant="contained" onClick={this.submitInfo}>Submit</Button>
+            </Card>
             </div>
         )
     }

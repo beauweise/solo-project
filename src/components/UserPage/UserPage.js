@@ -6,15 +6,6 @@ import {
   TableContainer, TableHead, TableRow, Table
 } from '@material-ui/core';
 import './UserPage.css';
-import { makeStyles } from '@material-ui/core/styles';
-import ReactDOM from 'react-dom';
-
-
-// const useStyles = makeStyles({
-//   table: {
-//     minWidth: 650,
-//   },
-// });
 
 class UserPage extends Component {
 
@@ -66,10 +57,9 @@ class UserPage extends Component {
     
     return (
       <div >
-        <h1 id="welcome">Welcome, {this.props.store.user.username}! Let's view your trip History!</h1>
-        <p>Please select a trip for more details</p>
-
+        <h1 id="welcome">Welcome, {this.props.store.user.username}! Let's view your trip History!</h1>     
         <Paper elevation={20} className='userTable'>
+          <h2>Filter History by Lake</h2>
           <select onChange={(event) => this.filterPage(event)} >
             <option hidden value=''>Lake</option>
             {this.props.store.getDropDownInfo.getLake.map((lake) => {

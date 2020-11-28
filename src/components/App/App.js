@@ -5,12 +5,9 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import { connect } from 'react-redux';
-
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AddInfo from '../AddInfo/AddInfo';
 import DetailsPage from '../DetailsPage/DetailsPage';
