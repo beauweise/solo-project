@@ -62,7 +62,7 @@ class AddInfo extends Component {
         return (
             <div>
                 <Card className="AddInfo" >
-                    <h1>Log New Trip</h1>
+                    <h2 className="text">Log New Trip</h2>
                     <ul className ='list'>
                         <li>
                             <input type="date" onChange={(event) => this.handleChange("date", event)}></input>
@@ -132,10 +132,10 @@ class AddInfo extends Component {
                                 this.handleChange("lures", event)}></input>
                         </li>
                         <br />
-                        <li>
-                            <label>Notes:</label>
-                            <input placeholder='Notes' className="textBox" onChange={(event) =>
-                                this.handleChange("notes", event)}></input>
+                        <li >
+                            <label className = "notes">Notes:</label>
+                            <textarea className= "textArea" placeholder='Notes' onChange={(event) =>
+                                this.handleChange("notes", event)}></textarea>
                         </li>
 
                     </ul>

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Button, Paper } from '@material-ui/core';
-import './EditPage';
+import { Button, Card } from '@material-ui/core';
+import './EditPage.css';
 
 
 class editPage extends Component {
@@ -59,8 +59,9 @@ class editPage extends Component {
         const info = this.props.store.edit
         
         return (
-            <div>
-                <Paper className ="editTable">
+            
+                <Card className="editTable">
+                    <h2 className='text'>Edit Trip</h2>
                     <ul>
                         <li>
                         {info.date && 
@@ -135,16 +136,16 @@ class editPage extends Component {
                         </li>
                         <br />
                         <li>
-                            <label>Notes:</label>
-                            <input placeholder='Notes' defaultValue = {info.notes}
-                            onChange={(event) => this.handleChange("notes", event)}></input>
+                            <label className = "notes">Notes:</label>
+                            <textarea className= "textArea" placeholder='Notes' defaultValue = {info.notes}
+                            onChange={(event) => this.handleChange("notes", event)}></textarea>
                         </li>
 
                     </ul>
                 
                 <Button className="btn"variant="contained" onClick={this.updateInfo}>Update</Button>
-            </Paper>
-            </div>
+            </Card>
+            
         )
     }
 }
