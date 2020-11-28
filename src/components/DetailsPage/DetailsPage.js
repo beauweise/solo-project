@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Button, Card, Paper } from '@material-ui/core';
+import { Button, Paper } from '@material-ui/core';
 import './Details.css';
 
 
@@ -16,7 +16,7 @@ class AboutPage extends Component {
 
       <>
         <h1>Trip Details</h1>
-        <div className='container'>
+        
           <Paper elevation={20} className='details'>
             {details.date &&
             <p>Date:{this.props.store.details.date.slice(5, 7)
@@ -31,16 +31,11 @@ class AboutPage extends Component {
             <p>Total Fish Saw:{details.see_fish}</p>
             <p>Best Lures of the Trip:{details.lures}</p>
             <p>Notes for the Trip:{details.notes}</p>
-
-
             <br />
-
-
-
             <br />
             <Button variant="contained" onClick={this.backButton}>Back to History</Button>
           </Paper>
-        </div>
+        
       </>
     );
   }

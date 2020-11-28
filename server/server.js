@@ -41,6 +41,7 @@ app.use('/api/history',historyRouter);
 
 // Serve static files
 app.use(express.static('build'));
+app.use(express.static('public'));
 
 // App Set //
 const PORT = process.env.PORT || 5000;
