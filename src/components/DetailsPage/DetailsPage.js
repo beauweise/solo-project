@@ -15,7 +15,7 @@ class AboutPage extends Component {
     return (
 
       <>
-        <h1>Trip Details!</h1>
+        <h1>Trip Details</h1>
         <div className='container'>
           <Paper elevation={20} className='details'>
             {details.date &&
