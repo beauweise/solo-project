@@ -114,15 +114,26 @@ class UserPage extends Component {
                   {this.props.store.lakeFilter.map((history) => {
                     return <TableRow key={history.id}>
                       <TableCell>{history.date.slice(5, 7) + '/' + history.date.slice(8, 10) + '/' +
-                        history.date.slice(0, 4)}</TableCell> <TableCell>{history.lake}</TableCell> <TableCell>{history.weather}</TableCell><TableCell>{history.wind}</TableCell>
-                      <TableCell><Button variant="contained" onClick={() => this.getDetails(history.date, history.lake, history.weather,
-                        history.wind, history.water_temp, history.water_clarity, history.fish_count,
-                        history.see_fish, history.lures, history.notes)}>Details</Button></TableCell>
-                      <TableCell><Button variant="contained" onClick={() => this.editInfo(history.id,
-                        history.date, history.lake, history.lake_id, history.weather, history.weather_id,
-                        history.wind, history.wind_id, history.water_temp, history.water_clarity, history.fish_count,
-                        history.see_fish, history.lures, history.notes)}>Edit</Button ></TableCell>
-                      <TableCell><Button variant="contained" onClick={() => this.deleteInfo(history.id)}>Delete</Button></TableCell></TableRow>
+                        history.date.slice(0, 4)}</TableCell>
+                      <TableCell>{history.lake}</TableCell>
+                      <TableCell>{history.weather}</TableCell>
+                      <TableCell>{history.wind}</TableCell>
+                      <TableCell>
+                        <Button variant="contained" onClick={() => 
+                        this.getDetails(history.date, history.lake, history.weather,
+                          history.wind, history.water_temp, history.water_clarity, history.fish_count,
+                          history.see_fish, history.lures, history.notes)}>Details</Button>
+                      </TableCell>
+                      <TableCell>
+                        <Button variant="contained" onClick={() => this.editInfo(history.id,
+                          history.date, history.lake, history.lake_id, history.weather, history.weather_id,
+                          history.wind, history.wind_id, history.water_temp, history.water_clarity, history.fish_count,
+                          history.see_fish, history.lures, history.notes)}>Edit</Button >
+                      </TableCell>
+                      <TableCell>
+                        <Button variant="contained" onClick={() => this.deleteInfo(history.id)}>Delete</Button>
+                      </TableCell>
+                    </TableRow>
                   })}
                 </TableBody>
 

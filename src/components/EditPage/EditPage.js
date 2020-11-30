@@ -41,12 +41,24 @@ class editPage extends Component {
         this.props.dispatch({ type: 'FETCH_LAKE' });
     }
     handleChange = (propertyName, event) => {
-        this.setState({
-            addUserData: {
-                ...this.state.addUserData,
-                [propertyName]: event.target.value
-            }
-        })
+        if (propertyName === "waterTemp" || propertyName === "waterClarity"
+            || propertyName === "fishCaught" || propertyName === "fishSaw") {
+            this.setState({
+                addUserData: {
+                    ...this.state.addUserData,
+                    [propertyName]: Number(event.target.value)
+                }
+            })
+        } else {
+            this.setState({
+                addUserData: {
+                    ...this.state.addUserData,
+                    [propertyName]: event.target.value
+                }
+            })
+        }
+        console.log('4444444444444',this.state.addUserData);
+        
     }
     // }
     updateInfo = (event) => {
