@@ -9,7 +9,7 @@ const {
  * GET route template
  */
 router.get('/',rejectUnauthenticated, (req, res) => {
-  const queryText = `SELECT * FROM "lake"`;
+  const queryText = `SELECT * FROM "lake" ORDER BY Lake Asc` ;
 
   pool.query(queryText).then((result) => {
     res.send(result.rows);
