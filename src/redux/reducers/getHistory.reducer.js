@@ -6,8 +6,5 @@ const historyReducer = (state = [], action) => {
             return state;
     }
 }
-  
-  // user will be on the redux state at:
-  // state.user
-  export default historyReducer;
-  
+
+export default historyReducer;

@@ -3,9 +3,7 @@ import axios from 'axios';
 
 
 function* dataReset(action) {
-    //getting genre to set on page load for the add movie page dropdown selection
-   console.log('3333333333333333333',action.payload);
-   
+    //getting information from the edit page to edit info in the DB and Refreshes page
     try {
     let response = yield axios.put('/api/userData', action.payload)
         yield put({type:'FETCH_HISTORY', payload: response.data });

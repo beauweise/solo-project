@@ -20,12 +20,13 @@ class UserPage extends Component {
 
   }
   filterPage = (event) => {
+    //filter selection from drop down gets that info to present on history page
     this.props.dispatch({ type: 'FILTER_DATA', payload: event.target.value })
   }
-  //getting details to be sent to details page on click of image
-  //also redirecting page to details page
+ 
   getDetails = (date, lake, weather, wind, water_temp, water_clarity,
     fish_count, see_fish, lures, notes) => {
+      //sends all info from edit button click to details page
     this.props.dispatch({
       type: 'SET_DETAILS',
       payload: {
@@ -39,6 +40,7 @@ class UserPage extends Component {
 
   editInfo = (id, date, lake, lake_id, weather, weather_id, wind, wind_id, water_temp, water_clarity,
     fish_count, see_fish, lures, notes) => {
+      //sends all info from edit button click to edit page
     this.props.dispatch({
       type: 'CHANGE_DATA',
       payload: {
@@ -51,9 +53,10 @@ class UserPage extends Component {
   }
 
   deleteInfo = (historyId) => {
+    //deletes selected item
     this.props.dispatch({ type: "DELETE_INFO", payload: historyId })
   }
-  // classes = useStyles();
+
   render() {
 
     return (
@@ -151,6 +154,5 @@ class UserPage extends Component {
   }
 }
 
-// this allows us to use <App /> in index.js
 export default connect(mapStoreToProps)(UserPage);
 

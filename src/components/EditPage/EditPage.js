@@ -37,6 +37,7 @@ class editPage extends Component {
     }
 
     getFormInfo = () => {
+        // gets information for dropdowns on page load
         this.props.dispatch({ type: 'FETCH_WIND' });
         this.props.dispatch({ type: 'FETCH_WEATHER' });
         this.props.dispatch({ type: 'FETCH_LAKE' });

@@ -3,8 +3,7 @@ import axios from 'axios';
 
 
 function* addData(action) {
-    //getting genre to set on page load for the add movie page dropdown selection
-   
+   // getting info from addInfo to post to the DB and updates
     try {
        let response = yield axios.post('/api/userData', action.payload);
         yield put({ type: 'FETCH_HISTORY', payload: response.data })

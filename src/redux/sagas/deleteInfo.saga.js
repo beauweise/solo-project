@@ -2,6 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* deleteInfo(action) {
+   //recieves info of which item to delete from db and updates
     try {
         let response = yield axios.delete(`/api/userData/${action.payload}`);
         yield put({ type: 'FETCH_HISTORY', payload: response.data })

@@ -1,5 +1,5 @@
-const addData = (state = [], action) => {
-    switch (action.type) {
+const addData = (state = [], action) => { 
+  switch (action.type) {
       case 'SET_DATA':
         return action.payload;
       default:
@@ -7,7 +7,6 @@ const addData = (state = [], action) => {
     }
   };
   
-  // user will be on the redux state at:
-  // state.user
+  
   export default addData;
   

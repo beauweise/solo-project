@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 function* setWind(action) {
-    //getting genre to set on page load for the add movie page dropdown selection
+    //getting wind to set on page load for the wind dropdown selection
     try {
         const windResponse = yield axios.get(`/api/wind`);
         yield put({ type: 'GET_WIND_INFO', payload: windResponse.data })
@@ -12,7 +12,7 @@ function* setWind(action) {
     }
 }
 function* setWeather(action) {
-    //getting genre to set on page load for the add movie page dropdown selection
+    //getting weather to set on page load for the weather dropdown selection
     try {
         const weatherResponse = yield axios.get(`/api/weather`);
         yield put({ type: 'GET_WEATHER_INFO', payload: weatherResponse.data })
@@ -21,7 +21,7 @@ function* setWeather(action) {
     }
 }
 function* setLake(action) {
-    //getting genre to set on page load for the add movie page dropdown selection
+    //getting lake to set on page load for the lake dropdown selection
     try {
         const lakeResponse = yield axios.get(`/api/lake`);
         yield put({ type: 'GET_LAKE_INFO', payload: lakeResponse.data })
