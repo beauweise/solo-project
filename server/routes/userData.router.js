@@ -32,10 +32,9 @@ router.get('/:id', (req, res) => {
 /**
  * POST route template
  */
-router.post('/',rejectUnauthenticated, (req, res) => {
-  console.log("inreq.body",req.body);
-  
-  let queryText = `INSERT INTO "user_entered_data" ("user_id","date","lake_id","weather_id",
+router.post('/',rejectUnauthenticated, (req, res) => {  
+  let queryText = `
+  INSERT INTO "user_entered_data" ("user_id","date","lake_id","weather_id",
   "water_temp","water_clarity","fish_count","see_fish","lures","wind_id","notes")
   values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`;
 
@@ -61,7 +60,8 @@ router.delete('/:id',rejectUnauthenticated, (req, res) => {
 
 router.put('/',rejectUnauthenticated, (req, res) => {
   console.log('66666666666666666666',req.body);
-  const queryText = `UPDATE "user_entered_data"
+  const queryText = `
+  UPDATE "user_entered_data"
   SET "date" = $1, "lake_id" = $2,"weather_id" = $3, "water_temp" = $4,"water_clarity" = $5,
   "fish_count" = $6,"see_fish" = $7, "lures" = $8,"wind_id" = $9, "notes" = $10
   WHERE "id" = $11;`;
