@@ -19,9 +19,9 @@ class AboutPage extends Component {
         
           <Paper elevation={20} className='details'>
             {details.date &&
-            <p>Date: {this.props.store.details.date.slice(5, 7)
-                + '/' + this.props.store.details.date.slice(8, 10)
-                + '/' + this.props.store.details.date.slice(0, 4)}</p>}
+            <p>Date: {details.date.slice(5, 7)
+                + '/' + details.date.slice(8, 10)
+                + '/' + details.date.slice(0, 4)}</p>}
             <p>Lake: {details.lake}</p>
             <p>Weather: {details.weather}</p>
             <p>Wind: {details.wind}</p>

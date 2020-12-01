@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Button, Card } from '@material-ui/core';
 import './AddInfo.css';
@@ -23,17 +22,21 @@ class AddInfo extends Component {
         }
     }
     componentDidMount() {
+        //gets all information on page load.
         this.getFormInfo();
         console.log(this.props.store.getWeather);
 
     }
     //getting data for page load from GET_MOVIES
     getFormInfo = () => {
+        //gets the information for all my drop downs to be mapped.
         this.props.dispatch({ type: 'FETCH_WIND' });
         this.props.dispatch({ type: 'FETCH_WEATHER' });
         this.props.dispatch({ type: 'FETCH_LAKE' });
     }
     handleChange = (propertyName, event) => {
+        //takes in all handle changes and makes sure all that have numbers 
+        // are converted from strings to number when places in state.
         if (propertyName === "waterTemp" || propertyName === "waterClarity"
             || propertyName === "fish_count" || propertyName === "fishSaw") {
             this.setState({
@@ -52,10 +55,9 @@ class AddInfo extends Component {
         }
     }
     submitInfo = (event) => {
+        //sends all info in form to the post request and sends user to homepage.
         this.props.dispatch({ type: 'ADD_DATA', payload: this.state.addUserData })
-
         this.props.history.push('/home');
-
     }
 
     render() {
@@ -87,9 +89,7 @@ class AddInfo extends Component {
                                 })}
                             </select>
                         </li>
-
                         <br />
-
                         <li>
                             <label>Wind:</label>
                             <select onChange={(event) => this.handleChange("wind", event)} >
