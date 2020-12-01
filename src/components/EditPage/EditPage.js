@@ -27,7 +27,8 @@ class editPage extends Component {
         this.getFormInfo();
     }
     componentDidUpdate() {
-
+        // compares my edit id and state to reset state values
+        // to bring in values to populate the inputs and drop downs.
         if (this.state.addUserData.id !== this.props.store.edit.id) {
             this.setState({
                 addUserData: this.props.store.edit
@@ -41,6 +42,8 @@ class editPage extends Component {
         this.props.dispatch({ type: 'FETCH_LAKE' });
     }
     handleChange = (propertyName, event) => {
+        //takes in all handle changes and makes sure all that have numbers 
+        // are converted from strings to number when places in state.
         if (propertyName === "waterTemp" || propertyName === "waterClarity"
             || propertyName === "fishCaught" || propertyName === "fishSaw") {
             this.setState({
@@ -57,10 +60,9 @@ class editPage extends Component {
                 }
             })
         }
-        console.log('4444444444444',this.state.addUserData);
-        
+
     }
-    // }
+
     updateInfo = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'EDIT_DATA', payload: this.state.addUserData })

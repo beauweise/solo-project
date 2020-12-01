@@ -137,9 +137,7 @@ class AddInfo extends Component {
                             <textarea className= "textArea" placeholder='Notes' onChange={(event) =>
                                 this.handleChange("notes", event)}></textarea>
                         </li>
-
-                    </ul>
-                
+                    </ul>               
                 <Button className= 'btn' variant="contained" onClick={this.submitInfo}>Submit</Button>
             </Card>
             </div>

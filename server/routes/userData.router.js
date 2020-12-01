@@ -21,7 +21,6 @@ router.get('/:id', (req, res) => {
   ORDER BY "date" DESC`;
 
   pool.query(queryText).then((result) => {
-    console.log(result.rows);
     res.send(result.rows);
   }).catch((error) => {
     console.log(`Error on query ${error}`);
@@ -47,7 +46,6 @@ router.post('/',rejectUnauthenticated, (req, res) => {
   });
 });
 router.delete('/:id',rejectUnauthenticated, (req, res) => {
-  console.log("In delete server-side req with", req.params);
   // DELETE route code here
   if (req.isAuthenticated()) {
     console.log("user is", req.user);
@@ -59,7 +57,6 @@ router.delete('/:id',rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/',rejectUnauthenticated, (req, res) => {
-  console.log('66666666666666666666',req.body);
   const queryText = `
   UPDATE "user_entered_data"
   SET "date" = $1, "lake_id" = $2,"weather_id" = $3, "water_temp" = $4,"water_clarity" = $5,

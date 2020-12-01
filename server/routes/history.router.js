@@ -20,7 +20,6 @@ router.get('/',rejectUnauthenticated, (req, res) => {
   ORDER BY "date" DESC`;
 
   pool.query(queryText).then((result) => {
-    console.log(result.rows);
     res.send(result.rows);
   }).catch((error) => {
     console.log(`Error on query ${error}`);
